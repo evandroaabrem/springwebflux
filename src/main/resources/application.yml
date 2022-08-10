@@ -1,0 +1,9 @@
+spring:
+  application:
+    name: webflux
+
+  data:
+    mongodb:
+      host:localhost
+      port:27017
+      database:admin
