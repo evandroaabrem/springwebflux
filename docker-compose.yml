@@ -1,0 +1,32 @@
+version: '3.4'
+
+services:
+  mongodb:
+    image: mongo
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: root
+    ports:
+      - 27017:27017
+    networks:
+      - teste-network
+
+  webflux:
+    image: evandroaabreu/webflux
+    restart : always
+    build:
+       context: .
+       dockerfile: Dockerfile
+    ports:
+      - 8087:8087
+    networks:
+      - teste-network
+
+    depends_on:
+      -   mongodb
+    environment:
+      SPRING_DATA_MONGODB_URI: mongodb://root:root@mongodb:27017/otima?authSource=admin&retryWrites=true&w=majority
+
+networks:
+  teste-network:
+    driver: bridge

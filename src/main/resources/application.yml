@@ -1,9 +1,7 @@
 spring:
-  application:
-    name: webflux
-
   data:
     mongodb:
-      host:localhost
-      port:27017
-      database:admin
+      uri : mongodb://root:root@127.0.0.1:27017/otima?authSource=admin&retryWrites=true&w=majority
+
+server :
+  port : 8087
